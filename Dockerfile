@@ -1,15 +1,14 @@
 # V2Ray Dockerfile
 #
-# Version: 1.0.0
+# Version: 1.1.0
 
 FROM ubuntu:14.04
 MAINTAINER fuyumi <280604399@qq.com>
 
 # environment
-ENV V2RAY_VERSION 1.5
+ENV V2RAY_VERSION 1.7
 ENV V2RAY_PORT 9527
-# ENV V2RAY_UUID
-
+ENV V2RAY_ALTERID 7259
 
 # install git & curl & unzip & daemon
 RUN apt-get -qq update && \

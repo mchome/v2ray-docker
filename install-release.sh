@@ -21,7 +21,7 @@ mkdir -p /tmp/v2ray
 curl -L -o "/tmp/v2ray/v2ray.zip" ${DOWNLOAD_LINK}
 unzip "/tmp/v2ray/v2ray.zip" -d "/tmp/v2ray/"
 
-# Create folder for V2Ray log.
+# Create folder for V2Ray log
 mkdir -p /var/log/v2ray
 
 # Install V2Ray binary to /usr/bin/v2ray
@@ -35,18 +35,22 @@ if [ ! -f "/etc/v2ray/config.json" ]; then
   cp "/tmp/v2ray/v2ray-${VER}-linux-${VDIS}/vpoint_vmess_freedom.json" "/etc/v2ray/config.json"
 
   PORT=$V2RAY_PORT
-  sed -i "s/37192/${PORT}/g" "/etc/v2ray/config.json"
+  sed -i "s/17173/${PORT}/g" "/etc/v2ray/config.json"
+
+  ALTERID=$V2RAY_ALTERID
+  sed -i "s/1024/${ALTERID}/g" "/etc/v2ray/config.json"
 
   UUID=$(cat /proc/sys/kernel/random/uuid)
   sed -i "s/3b129dec-72a3-4d28-aeee-028a0fe86e22/${UUID}/g" "/etc/v2ray/config.json"
 
   echo "PORT:${PORT}"
+  echo "ALTERID:${ALTERID}"
   echo "UUID:${UUID}"
 fi
 
 echo "========================================================================"
 echo "  Hey, you can use V2Ray Service now  "
-echo "  Version: $VER   Localtime: CTS  "
+echo "  Version: $VER   ALTERID: $ALTERID  "
 echo "  Port: $PORT     UUID: $UUID  "
 echo "========================================================================"
 
