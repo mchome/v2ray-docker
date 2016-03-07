@@ -42,10 +42,13 @@ if [ ! -f "/etc/v2ray/config.json" ]; then
   sed -i "s/1024/${ALTERID}/g" "/etc/v2ray/config.json"
 
   UUID=$(cat /proc/sys/kernel/random/uuid)
-  sed -i "s/3b129dec-72a3-4d28-aeee-028a0fe86e22/${UUID}/g" "/etc/v2ray/config.json"
+  sed -i "s/1ad52bdc-16d1-41a5-811d-f5c0c76d677b/${UUID}/g" "/etc/v2ray/config.json"
 
   SS_PORT=$SS_PORT
   sed -i "s/30001/${SS_PORT}/g" "/etc/v2ray/config.json"
+  
+  SS_METHOD=$SS_METHOD
+  sed -i "s/chacha20/${SS_METHOD}/g" "/etc/v2ray/config.json"
 
   SS_PASSWD=$SS_PASSWD
   sed -i "s/v2rayss/${SS_PASSWD}/g" "/etc/v2ray/config.json"
@@ -54,7 +57,7 @@ if [ ! -f "/etc/v2ray/config.json" ]; then
   echo "ALTERID:${ALTERID}"
   echo "UUID:${UUID}"
   echo "SS_PORT:${SS_PORT}"
-  echo "SS_METHOD:aes-256-cfb"
+  echo "SS_METHOD:${SS_METHOD}"
   echo "SS_PASSWD:${SS_PASSWD}"
 fi
 
@@ -62,7 +65,7 @@ echo "========================================================================"
 echo "  Hey, you can use V2Ray Service now  "
 echo "  Version: $VER   Port: $PORT  "
 echo "  ALTERID: $ALTERID     UUID: $UUID  "
-echo "  SS_PORT: $SS_PORT   SS_METHOD: aes-256-cfb   SS_PASSWD: $SS_PASSWD  "
+echo "  SS_PORT: $SS_PORT   SS_METHOD: $SS_METHOD   SS_PASSWD: $SS_PASSWD  "
 echo "========================================================================"
 
 /usr/bin/v2ray/v2ray -config /etc/v2ray/config.json

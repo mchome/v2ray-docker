@@ -26,7 +26,7 @@
       "protocol": "shadowsocks",
       "port": 30001,
       "settings": {
-        "method": "aes-256-cfb",
+        "method": "chacha20",
         "password": "v2rayss",
         "udp": false
       }
